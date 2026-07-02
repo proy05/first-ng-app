@@ -8,6 +8,6 @@ import { Component, input } from '@angular/core';
   styleUrl: './greeting.component.scss'
 })
 export class GreetingComponent {
-  message = input("Hello hello"); //input tells Ng that this component can receive something from the outside
+  message = input("Hello hello"); //Input signal tells Ng that this component can receive something from the outside
 
 }

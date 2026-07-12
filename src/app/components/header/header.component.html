@@ -1,5 +1,10 @@
 <header>
     <nav>
-        {{title()}}
+        <!-- call the RouterOutlet's route for home using routerLink -->
+        <span routerLink="/">{{title()}}</span>
+        <ul>
+            <!-- call the RouterOutlet's route for todos using routerLink -->
+            <li routerLink="/todos">Todos</li> 
+        </ul>
     </nav>
 </header>

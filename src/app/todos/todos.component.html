@@ -1,1 +1,7 @@
-<p>todos works!</p>
+<!-- <p>{{todoItems()[0].title}}</p>
+<p>{{todoItems()[1].title}}</p> -->
+<!-- Below is Ng's built-in control flow syntax -->
+ <!-- Instead of "track $index" use "track todoitem.id" for uniqueness tracking as it improves performance of the loop -->
+@for (todoitem of todoItems(); track todoitem.id) { 
+    <p>{{todoitem.title}}</p>
+}

@@ -2,6 +2,19 @@
 <p>{{todoItems()[1].title}}</p> -->
 <!-- Below is Ng's built-in control flow syntax -->
  <!-- Instead of "track $index" use "track todoitem.id" for uniqueness tracking as it improves performance of the loop -->
-@for (todoitem of todoItems(); track todoitem.id) { 
+<!-- @for (todoitem of todoItems(); track todoitem.id) { 
     <p>{{todoitem.title}}</p>
-}
+} -->
+
+<h3>Todos List</h3>
+<ul class="todos">
+    @for (todoitem of todoItems(); track todoitem.id) { 
+        <li class="todos__items">
+            <input id="todo-{{ todoitem.id }}" type="checkbox" [value] = "todoitem.completed">
+            <!-- The {{ todoitem.id }} syntax is an Angular interpolation expression to dynamically generate a unique HTML ID attribute for each element-->
+            <!-- Whereas Wrapping an attribute in square brackets [value] denotes Property Binding in Angular. 
+            It tells Angular to evaluate the right side of the equals sign ("todoitem.completed") as Code-->
+            <label for="todo-{{ todoitem.id }}">{{todoitem.title}}</label>
+        </li>
+    }
+</ul>

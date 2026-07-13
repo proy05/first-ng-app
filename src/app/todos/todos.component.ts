@@ -1,6 +1,7 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { TodosService } from '../services/todos.service';
 import { Todo } from '../model/todo.type';
+import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-todos',
@@ -16,8 +17,16 @@ export class TodosComponent implements OnInit //OnInit is a lifecycle hook and h
 
   ngOnInit(): void {
     console.log(new Date());
-    console.log(this.todoService.todoItems);
-    this.todoItems.set(this.todoService.todoItems); //taking the data from the service and updating the signal
+    this.todoService.getTodosFromApi()  //returns an observable similar in usage to a promise
+    .pipe(
+      catchError(err => {
+        console.log(err);
+        throw err;
+      })
+    )
+    .subscribe(todos => {
+      this.todoItems.set(todos);  //update the signal with the data from the service
+    });
     
   }
 }

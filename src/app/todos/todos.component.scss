@@ -1,0 +1,7 @@
+.todos{
+    &__items{
+        display: flex;
+        align-items: center;
+        gap: 8px; //gap defines the spacing between flex items both horizontally and vertically (if wrapping is enabled)
+    }
+}

@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Todo } from '../model/todo.type';
+import { HttpClient } from '@angular/common/http';
 
 //A Ng service is something that can be injected into a component
 // and provides data (maybe by reading from a web service) to a component
@@ -9,19 +10,12 @@ import { Todo } from '../model/todo.type';
   providedIn: 'root' 
 })
 export class TodosService {
-  todoItems: Todo[] = [{
-    title: 'groceries',
-    id: 0,
-    userId: 1,
-    completed: false
-  },
-  {
-    title: 'car wash',
-    id: 1,
-    userId: 1,
-    completed: false
-  }
-];
+  http = inject(HttpClient);
 
-  constructor() { }
+  // constructor() { }
+
+  getTodosFromApi(){
+    const url = 'https://jsonplaceholder.typicode.com/todos';
+    return this.http.get<Todo[]>(url);
+  }
 }

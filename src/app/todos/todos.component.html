@@ -1,3 +1,15 @@
+<h3>Todos List</h3>
+
+<!-- <p *ngIf="!todoItems().length">Loading...</p>  --> 
+<!-- above line is same as below line -->
+<!-- <p *ngIf="todoItems().length === 0">Loading...</p>  -->
+<!-- But now there's a newer way to write the above line -->
+<!-- using @if: a built-in control flow directive introduced in Angular 17, 
+ used to conditionally render HTML elements in a template -->
+@if(todoItems().length === 0){
+    <p>Loading...</p>
+}
+
 <!-- <p>{{todoItems()[0].title}}</p>
 <p>{{todoItems()[1].title}}</p> -->
 <!-- Below is Ng's built-in control flow syntax -->
@@ -5,16 +17,16 @@
 <!-- @for (todoitem of todoItems(); track todoitem.id) { 
     <p>{{todoitem.title}}</p>
 } -->
-
-<h3>Todos List</h3>
+    
 <ul class="todos">
-    @for (todoitem of todoItems(); track todoitem.id) { 
-        <li class="todos__items">
-            <input id="todo-{{ todoitem.id }}" type="checkbox" [value] = "todoitem.completed">
-            <!-- The {{ todoitem.id }} syntax is an Angular interpolation expression to dynamically generate a unique HTML ID attribute for each element-->
-            <!-- Whereas Wrapping an attribute in square brackets [value] denotes Property Binding in Angular. 
-            It tells Angular to evaluate the right side of the equals sign ("todoitem.completed") as Code-->
-            <label for="todo-{{ todoitem.id }}">{{todoitem.title}}</label>
-        </li>
+    @for (todoitem of todoItems(); track todoitem.id) {
+    <!-- <li class="todos__items">
+        <input id="todo-{{ todoitem.id }}" type="checkbox" [value]="todoitem.completed">
+        <!-- The {{ todoitem.id }} syntax is an Angular interpolation expression to dynamically generate a unique HTML ID attribute for each element-->
+        <!-- Whereas Wrapping an attribute in square brackets [value] denotes Property Binding in Angular. 
+    It tells Angular to evaluate the right side of the equals sign ("todoitem.completed") as Code-->
+        <!-- <label for="todo-{{ todoitem.id }}">{{todoitem.title}}</label> -->
+    <!-- </li> --> 
+     <app-todo-item (todoToggled)="updateTodoitem($event)" [todo]="todoitem"/>
     }
 </ul>

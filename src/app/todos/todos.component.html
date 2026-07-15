@@ -17,9 +17,16 @@
 <!-- @for (todoitem of todoItems(); track todoitem.id) { 
     <p>{{todoitem.title}}</p>
 } -->
-    
+
+<form action="">
+    <label for="">Filter Todos</label>
+    <input name="searchTerm" type="text" [(ngModel)]="searchTerm" placeholder="Search todos..." />
+<!-- [(ngModel)]="searchTerm" handles two-way data binding: [] pushes component state changes to the view/html, while () captures view input events to update the component variable. -->
+</form>
+
 <ul class="todos">
-    @for (todoitem of todoItems(); track todoitem.id) {
+    <!-- the array argument to filterTodos pipe is coming from the for loop but other argument for the searchterm neeeds to be provided manually-->
+    @for (todoitem of todoItems() | filterTodos : searchTerm(); track todoitem.id) {
     <!-- <li class="todos__items">
         <input id="todo-{{ todoitem.id }}" type="checkbox" [value]="todoitem.completed">
         <!-- The {{ todoitem.id }} syntax is an Angular interpolation expression to dynamically generate a unique HTML ID attribute for each element-->

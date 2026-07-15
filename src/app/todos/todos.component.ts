@@ -3,12 +3,14 @@ import { TodosService } from '../services/todos.service';
 import { Todo } from '../model/todo.type';
 import { catchError } from 'rxjs';
 import { TodoItemComponent } from '../components/todo-item/todo-item.component';
+import { FormsModule } from '@angular/forms';
+import { FilterTodosPipe } from '../pipes/filter-todos.pipe';
 // import { NgIf } from '@angular/common'; //not needed if using @if
 
 @Component({
   selector: 'app-todos',
   standalone: true,
-  imports: [TodoItemComponent],
+  imports: [TodoItemComponent, FormsModule, FilterTodosPipe],
   templateUrl: './todos.component.html',
   styleUrl: './todos.component.scss'
 })
@@ -16,6 +18,7 @@ export class TodosComponent implements OnInit //OnInit is a lifecycle hook and h
 {
   todoService = inject(TodosService);  //inject TodosService into TodosComponent
   todoItems = signal<Array<Todo>>([]); //initialize with empty array
+  searchTerm = signal(''); //empty by default
 
   ngOnInit(): void {
     console.log(new Date());

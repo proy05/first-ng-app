@@ -5,7 +5,7 @@ import { Directive, input, effect, inject, ElementRef } from '@angular/core';
   standalone: true
 })
 export class HighlightCompletedTodoDirective {
-  isCompleted = input(false); //input() is a signal coming from outside
+  isCompleted = input(false); //input() is a signal coming from outside, Here it comes from the todo item component
   el = inject(ElementRef); //ElementRef is an Ng service giving access to the DOM element the directive is applied to
   //Here it is the li element representing a todo item
 

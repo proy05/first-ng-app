@@ -32,8 +32,8 @@ export class TodosComponent implements OnInit //OnInit is a lifecycle hook and h
     
   }
 
-  //function to update the toggled todo item in the parent Todo component, 
-  // called when the Todoitem child component emits a toggled event
+  //function to update the toggled todo item inside the parent Todo component
+  // It is called when the Todoitem child component emits a toggled event
   updateTodoitem(todoitem : Todo){ 
     this.todoItems.update(todos => {
       return todos.map(todo => {
@@ -44,7 +44,7 @@ export class TodosComponent implements OnInit //OnInit is a lifecycle hook and h
           // Hence we need to flip it in below code. 
           
           return {
-            ...todo,
+            ...todo, //use other props as is
             completed: !todoitem.completed //flip the current value of the toggled todoitem
           }
         }

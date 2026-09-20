@@ -9,5 +9,6 @@ import { Component, input } from '@angular/core';
 })
 export class GreetingComponent {
   message = input("Hello hello"); //Input signal tells Ng that this component can receive something from the outside
+  //Here it is recieving the input from its parent, Home component
 
 }

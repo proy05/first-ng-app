@@ -6,5 +6,6 @@
     (change)="this.todoClicked()">
     <!--(change) is an Ng event binding that listens to the standard HTML change event 
     on an input checkbox element. -->
+    <!--uppercase is an Angular pipe  -->
     <label for="todo-{{ todo().id }}">{{todo().title | uppercase }}</label>
 </li>

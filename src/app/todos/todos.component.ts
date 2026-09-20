@@ -14,7 +14,10 @@ import { FilterTodosPipe } from '../pipes/filter-todos.pipe';
   templateUrl: './todos.component.html',
   styleUrl: './todos.component.scss'
 })
-export class TodosComponent implements OnInit //OnInit is a lifecycle hook and has the ngOnInit method that runs when a component is initiated
+ //OnInit is a lifecycle hook and has the ngOnInit method that runs when a component is initiated
+//When you navigate away from the TodosComponent, Angular destroys that component instance (triggering ngOnDestroy) and removes it from the DOM
+//When you navigate back to it, Angular creates a fresh, brand-new instance of TodosComponent. Because it is being initialized anew, ngOnInit runs again, and your API call triggers once more.
+export class TodosComponent implements OnInit
 {
   todoService = inject(TodosService);  //inject TodosService into TodosComponent
   todoItems = signal<Array<Todo>>([]); //initialize with empty array
